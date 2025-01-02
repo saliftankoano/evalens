@@ -1,19 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import {
-  Bell,
   Brain,
   MoreVertical,
   Plus,
-  Settings,
   Users,
   Timer,
   BarChart2,
   Bot,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import NavBar from "@/components/dashboard/NavBar";
 
 const projects = [
   {
@@ -101,29 +99,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-[#1a1d21]">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-[#22262b]">
-        <div className="container flex items-center justify-between h-14 px-4">
-          <div className="flex items-center gap-2">
-            <Brain className="w-8 h-8 text-purple-500" />
-            <span className="text-white text-xl font-semibold">Evalens</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="text-gray-400">
-              <Bell className="w-5 h-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-gray-400">
-              <Settings className="w-5 h-5" />
-            </Button>
-            <Image
-              src="/placeholder.svg"
-              alt="Profile"
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
-          </div>
-        </div>
-      </header>
+      <NavBar />
 
       {/* Main Content */}
       <main className="container px-4 py-8 space-y-8">
@@ -142,48 +118,54 @@ export default function DashboardPage() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-[#22262b] rounded-lg p-4 space-y-4"
-            >
-              <div className="flex items-center justify-between">
-                <Link
-                  href={`/projects/${project.id}`}
-                  className="text-lg font-medium text-white hover:text-purple-500"
-                >
-                  {project.name}
-                </Link>
-                <Button variant="ghost" size="icon" className="text-gray-400">
-                  <MoreVertical className="w-4 h-4" />
-                </Button>
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center text-sm text-gray-400">
-                  <Timer className="w-4 h-4 mr-2" />
-                  Last updated {project.lastUpdated}
+          {projects ? (
+            projects.map((project) => (
+              <div
+                key={project.id}
+                className="bg-[#22262b] rounded-lg p-4 space-y-4"
+              >
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={`/projects/${project.id}`}
+                    className="text-lg font-medium text-white hover:text-purple-500"
+                  >
+                    {project.name}
+                  </Link>
+                  <Button variant="ghost" size="icon" className="text-gray-400">
+                    <MoreVertical className="w-4 h-4" />
+                  </Button>
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-400">
-                  <div className="flex items-center">
-                    <Brain className="w-4 h-4 mr-2" />
-                    {project.modelsSelected} Models Selected
+                <div className="space-y-2">
+                  <div className="flex items-center text-sm text-gray-400">
+                    <Timer className="w-4 h-4 mr-2" />
+                    Last updated {project.lastUpdated}
                   </div>
-                  <div className="flex items-center">
-                    <BarChart2 className="w-4 h-4 mr-2" />
-                    {project.prompts} Prompts
+                  <div className="flex items-center gap-4 text-sm text-gray-400">
+                    <div className="flex items-center">
+                      <Brain className="w-4 h-4 mr-2" />
+                      {project.modelsSelected} Models Selected
+                    </div>
+                    <div className="flex items-center">
+                      <BarChart2 className="w-4 h-4 mr-2" />
+                      {project.prompts} Prompts
+                    </div>
                   </div>
                 </div>
+                <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+                  <Link
+                    href={`/projects/${project.id}`}
+                    className="text-sm text-purple-500 hover:text-purple-400"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
-              <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                <Link
-                  href={`/projects/${project.id}`}
-                  className="text-sm text-purple-500 hover:text-purple-400"
-                >
-                  View Details
-                </Link>
-              </div>
+            ))
+          ) : (
+            <div className="flex justify-center text-2xl">
+              No projects created yet.
             </div>
-          ))}
+          )}
         </div>
 
         {/* Stats Grid */}
