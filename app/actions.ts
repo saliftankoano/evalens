@@ -1,6 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import { revalidatePath } from "next/cache";
 
 export async function handleAuth(formData: FormData) {
   // Here you would typically:
@@ -11,9 +13,6 @@ export async function handleAuth(formData: FormData) {
   // Now redirecting to the new dashboard
   redirect("/dashboard");
 }
-
-import { createClient } from "@/utils/supabase/server";
-import { revalidatePath } from "next/cache";
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
