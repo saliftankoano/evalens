@@ -1,7 +1,6 @@
 import { Brain, Bell, Settings } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
-import Image from "next/image";
 import ProfileDropdown from "./ProfileDropdown";
 
 export default function NavBar() {
