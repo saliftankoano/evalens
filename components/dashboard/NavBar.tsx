@@ -1,5 +1,5 @@
 import { Brain, Bell, Settings } from "lucide-react";
-import React, { Component } from "react";
+import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 export default function NavBar() {
@@ -18,7 +18,7 @@ export default function NavBar() {
             <Settings className="w-5 h-5" />
           </Button>
           <Image
-            src="/placeholder.svg"
+            src="/brain.png"
             alt="Profile"
             width={32}
             height={32}
