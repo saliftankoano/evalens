@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavBar from "@/components/dashboard/NavBar";
+import { NewProjectModal } from "@/components/dashboard/NewProjectModal";
 
 const projects = [
   {
@@ -110,10 +111,7 @@ export default function DashboardPage() {
               Manage and track your evaluation projects
             </p>
           </div>
-          <Button className="bg-purple-500 hover:bg-purple-600">
-            <Plus className="w-4 h-4 mr-2" />
-            New Project
-          </Button>
+          <NewProjectModal />
         </div>
 
         {/* Projects Grid */}
