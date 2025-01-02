@@ -18,8 +18,7 @@ import { revalidatePath } from "next/cache";
 export async function login(formData: FormData) {
   const supabase = await createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
+  // Add validation later
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
@@ -35,25 +34,25 @@ export async function login(formData: FormData) {
   redirect("/dashboard");
 }
 
-export async function signup(formData: FormData) {
+export async function signUp(formData: FormData) {
   const supabase = await createClient();
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
+  console.log("signing up...");
+  const { data, error } = await supabase.auth.signUp({
     email: formData.get("email") as string,
     password: formData.get("password") as string,
-  };
-
-  const { error } = await supabase.auth.signUp(data);
-
+    options: {
+      emailRedirectTo: "http://localhost:3000/dashboard",
+    },
+  });
+  console.log("signing up... done");
   if (error) {
+    console.log("error signing up: ", error);
     redirect("/error");
   }
-
   revalidatePath("/", "layout");
-  redirect("/dashboard");
+  redirect("/confirm");
 }
+
 export async function signIn(formData: FormData) {
   const supabase = await createClient();
   const data = {

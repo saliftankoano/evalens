@@ -1,91 +1,101 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { Bell, Brain, MoreVertical, Plus, Settings, Users, Timer, BarChart2, Bot } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Bell,
+  Brain,
+  MoreVertical,
+  Plus,
+  Settings,
+  Users,
+  Timer,
+  BarChart2,
+  Bot,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    id: '1',
-    name: 'Website Copy Evaluation',
-    lastUpdated: '2 hours ago',
+    id: "1",
+    name: "Website Copy Evaluation",
+    lastUpdated: "2 hours ago",
     modelsSelected: 3,
     prompts: 24,
-    team: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg']
+    team: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
   },
   {
-    id: '2',
-    name: 'Product Description AI',
-    lastUpdated: '5 days ago',
+    id: "2",
+    name: "Product Description AI",
+    lastUpdated: "5 days ago",
     modelsSelected: 2,
     prompts: 18,
-    team: ['/placeholder.svg', '/placeholder.svg']
+    team: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
-    id: '3',
-    name: 'Customer Support Bot',
-    lastUpdated: '1 week ago',
+    id: "3",
+    name: "Customer Support Bot",
+    lastUpdated: "1 week ago",
     modelsSelected: 4,
     prompts: 32,
-    team: ['/placeholder.svg', '/placeholder.svg', '/placeholder.svg']
-  }
-]
+    team: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+  },
+];
 
 const stats = [
   {
     icon: BarChart2,
-    label: 'This Month',
-    value: '246',
-    subLabel: 'Total Evaluations',
-    change: { value: '12.5%', type: 'increase', period: 'vs last month' }
+    label: "This Month",
+    value: "246",
+    subLabel: "Total Evaluations",
+    change: { value: "12.5%", type: "increase", period: "vs last month" },
   },
   {
     icon: Bot,
-    label: 'Active',
-    value: '8',
-    subLabel: 'AI Models',
-    change: { value: '2', type: 'new', period: 'this week' }
+    label: "Active",
+    value: "8",
+    subLabel: "AI Models",
+    change: { value: "2", type: "new", period: "this week" },
   },
   {
     icon: Users,
-    label: 'Total',
-    value: '12',
-    subLabel: 'Team Members',
-    change: { value: '3', type: 'new', period: 'this month' }
+    label: "Total",
+    value: "12",
+    subLabel: "Team Members",
+    change: { value: "3", type: "new", period: "this month" },
   },
   {
     icon: Timer,
-    label: 'Average',
-    value: '1.8h',
-    subLabel: 'Response Time',
-    change: { value: '30min', type: 'improvement', period: 'improvement' }
-  }
-]
+    label: "Average",
+    value: "1.8h",
+    subLabel: "Response Time",
+    change: { value: "30min", type: "improvement", period: "improvement" },
+  },
+];
 
 const activities = [
   {
-    type: 'model',
-    action: 'New model added to',
-    project: 'Website Copy Evaluation',
-    time: '2 hours ago',
-    user: 'Alex Morgan'
+    type: "model",
+    action: "New model added to",
+    project: "Website Copy Evaluation",
+    time: "2 hours ago",
+    user: "Alex Morgan",
   },
   {
-    type: 'evaluation',
-    action: 'Evaluation completed for',
-    project: 'Product Description AI',
-    time: '5 hours ago',
-    user: 'Sarah Chen'
+    type: "evaluation",
+    action: "Evaluation completed for",
+    project: "Product Description AI",
+    time: "5 hours ago",
+    user: "Sarah Chen",
   },
   {
-    type: 'member',
-    action: 'New team member added to',
-    project: 'Customer Support Bot',
-    time: '1 day ago',
-    user: 'John Smith'
-  }
-]
+    type: "member",
+    action: "New team member added to",
+    project: "Customer Support Bot",
+    time: "1 day ago",
+    user: "John Smith",
+  },
+];
 
 export default function DashboardPage() {
   return (
@@ -120,7 +130,9 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white">My Projects</h1>
-            <p className="text-gray-400">Manage and track your evaluation projects</p>
+            <p className="text-gray-400">
+              Manage and track your evaluation projects
+            </p>
           </div>
           <Button className="bg-purple-500 hover:bg-purple-600">
             <Plus className="w-4 h-4 mr-2" />
@@ -131,9 +143,12 @@ export default function DashboardPage() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project) => (
-            <div key={project.id} className="bg-[#22262b] rounded-lg p-4 space-y-4">
+            <div
+              key={project.id}
+              className="bg-[#22262b] rounded-lg p-4 space-y-4"
+            >
               <div className="flex items-center justify-between">
-                <Link 
+                <Link
                   href={`/projects/${project.id}`}
                   className="text-lg font-medium text-white hover:text-purple-500"
                 >
@@ -160,18 +175,6 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                <div className="flex -space-x-2">
-                  {project.team.map((avatar, i) => (
-                    <Image
-                      key={i}
-                      src={avatar}
-                      alt={`Team member ${i + 1}`}
-                      width={24}
-                      height={24}
-                      className="rounded-full border-2 border-[#22262b]"
-                    />
-                  ))}
-                </div>
                 <Link
                   href={`/projects/${project.id}`}
                   className="text-sm text-purple-500 hover:text-purple-400"
@@ -194,16 +197,25 @@ export default function DashboardPage() {
                 <span className="text-sm text-gray-400">{stat.label}</span>
               </div>
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-2xl font-bold text-white">
+                  {stat.value}
+                </div>
                 <div className="text-sm text-gray-400">{stat.subLabel}</div>
-                <div className={`text-sm ${
-                  stat.change.type === 'increase' ? 'text-green-500' : 
-                  stat.change.type === 'improvement' ? 'text-green-500' : 
-                  'text-purple-500'
-                }`}>
-                  {stat.change.type === 'new' ? `+ ${stat.change.value} new` : 
-                   stat.change.type === 'increase' ? `↑ ${stat.change.value}` :
-                   `↓ ${stat.change.value}`} {stat.change.period}
+                <div
+                  className={`text-sm ${
+                    stat.change.type === "increase"
+                      ? "text-green-500"
+                      : stat.change.type === "improvement"
+                        ? "text-green-500"
+                        : "text-purple-500"
+                  }`}
+                >
+                  {stat.change.type === "new"
+                    ? `+ ${stat.change.value} new`
+                    : stat.change.type === "increase"
+                      ? `↑ ${stat.change.value}`
+                      : `↓ ${stat.change.value}`}{" "}
+                  {stat.change.period}
                 </div>
               </div>
             </div>
@@ -214,7 +226,10 @@ export default function DashboardPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-white">Recent Activity</h2>
-            <Button variant="link" className="text-purple-500 hover:text-purple-400">
+            <Button
+              variant="link"
+              className="text-purple-500 hover:text-purple-400"
+            >
               View All
             </Button>
           </div>
@@ -222,9 +237,9 @@ export default function DashboardPage() {
             {activities.map((activity, i) => (
               <div key={i} className="p-4 flex items-center gap-4">
                 <div className="p-2 rounded-lg bg-[#2b3035]">
-                  {activity.type === 'model' ? (
+                  {activity.type === "model" ? (
                     <Plus className="w-5 h-5 text-purple-500" />
-                  ) : activity.type === 'evaluation' ? (
+                  ) : activity.type === "evaluation" ? (
                     <BarChart2 className="w-5 h-5 text-green-500" />
                   ) : (
                     <Users className="w-5 h-5 text-blue-500" />
@@ -232,8 +247,11 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-300">
-                    {activity.action}{' '}
-                    <Link href={`/projects/${activity.project}`} className="text-purple-500 hover:text-purple-400">
+                    {activity.action}{" "}
+                    <Link
+                      href={`/projects/${activity.project}`}
+                      className="text-purple-500 hover:text-purple-400"
+                    >
                       {activity.project}
                     </Link>
                   </p>
@@ -251,9 +269,15 @@ export default function DashboardPage() {
       <footer className="border-t border-gray-800">
         <div className="container flex items-center justify-between h-14 px-4">
           <div className="flex items-center gap-4 text-sm text-gray-400">
-            <Link href="#" className="hover:text-gray-300">Documentation</Link>
-            <Link href="#" className="hover:text-gray-300">Support</Link>
-            <Link href="#" className="hover:text-gray-300">Privacy Policy</Link>
+            <Link href="#" className="hover:text-gray-300">
+              Documentation
+            </Link>
+            <Link href="#" className="hover:text-gray-300">
+              Support
+            </Link>
+            <Link href="#" className="hover:text-gray-300">
+              Privacy Policy
+            </Link>
           </div>
           <div className="text-sm text-gray-400">
             © 2025 Evalens. All rights reserved.
@@ -261,6 +285,5 @@ export default function DashboardPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
-

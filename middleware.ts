@@ -2,6 +2,13 @@ import { type NextRequest } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
+  // Add public routes that don't require authentication
+  const publicUrls = ["/login", "/confirm", "/"];
+
+  if (publicUrls.includes(request.nextUrl.pathname)) {
+    return;
+  }
+
   return await updateSession(request);
 }
 
