@@ -2,6 +2,8 @@ import { Brain, Bell, Settings } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import ProfileDropdown from "./ProfileDropdown";
+
 export default function NavBar() {
   return (
     <header className="border-b border-gray-800 bg-[#22262b]">
@@ -17,13 +19,7 @@ export default function NavBar() {
           <Button variant="ghost" size="icon" className="text-gray-400">
             <Settings className="w-5 h-5" />
           </Button>
-          <Image
-            src="/brain.png"
-            alt="Profile"
-            width={32}
-            height={32}
-            className="rounded-full"
-          />
+          <ProfileDropdown />
         </div>
       </div>
     </header>
