@@ -21,7 +21,7 @@ export default function DashboardContent({ user }: { user: any }) {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-white">
-                Welcome, {user?.email}
+                Welcome, {user.email}
               </h1>
               <p className="text-gray-400">
                 Manage and track your evaluation projects

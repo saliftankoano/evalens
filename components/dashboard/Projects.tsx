@@ -1,6 +1,6 @@
-import { Link, MoreVertical, Timer, Brain, BarChart2 } from "lucide-react";
+import { MoreVertical, Timer, Brain, BarChart2 } from "lucide-react";
 import { Button } from "../ui/button";
-
+import Link from "next/link";
 export default function Projects() {
   const projects = [
     {
@@ -56,18 +56,14 @@ export default function Projects() {
               <div className="flex items-center gap-4 text-sm text-gray-400">
                 <div className="flex items-center">
                   <Brain className="w-4 h-4 mr-2" />
-                  {project.modelsSelected} Models Selected
-                </div>
-                <div className="flex items-center">
-                  <BarChart2 className="w-4 h-4 mr-2" />
-                  {project.prompts} Prompts
+                  {project.modelsSelected} Experiments
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+            <div className="flex items-center justify-between pt-4 border-t border-purple-500">
               <Link
                 href={`/projects/${project.id}`}
-                className="text-sm text-purple-500 hover:text-purple-400"
+                className="text-sm text-white hover:text-purple-500"
               >
                 View Details
               </Link>
