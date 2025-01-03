@@ -13,12 +13,24 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { DashboardContext } from "@/app/context";
+import { createClient } from "@/utils/supabase/client";
+import Link from "next/link";
 
 export default function ProfileDropdown() {
   const router = useRouter();
   const user = useContext(DashboardContext);
   const handleProfileClick = () => {
     router.push("/profile");
+  };
+
+  const logOut = async () => {
+    const supabase = createClient();
+    let { error } = await supabase.auth.signOut();
+    if (error) {
+      throw new Error(`Log out Error! Check this message: ${error}`);
+    }
+    // console.log(`User log out successful!`);
+    router.push("/auth");
   };
 
   return (
@@ -44,7 +56,7 @@ export default function ProfileDropdown() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuItem asChild>
-          <div className="w-full flex items-center gap-2">
+          <div className="w-full flex items-center gap-2" onClick={logOut}>
             <LogOut />
             <span>Log out</span>
           </div>
